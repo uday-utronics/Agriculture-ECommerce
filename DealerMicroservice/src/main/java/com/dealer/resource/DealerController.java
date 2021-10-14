@@ -52,12 +52,16 @@ public class DealerController {
 		return dealerService.getByUsername(dealerUsername);
 	}
 	
+	
 	@PostMapping("/update/{id}")
 	public String update(@PathVariable String id , @RequestBody Dealer dealer) {
 		dealer.setId(id);
 		return dealerService.update(dealer);
 	}
 	
+	
+	
+	// additional functionality to be added as required
 	
 	@RequestMapping("/call")
 	public String call() {
