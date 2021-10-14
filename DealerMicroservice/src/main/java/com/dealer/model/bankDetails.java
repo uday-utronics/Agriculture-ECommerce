@@ -1,4 +1,4 @@
-package com.farmer.model;
+package com.dealer.model;
 
 public class bankDetails {
 	
