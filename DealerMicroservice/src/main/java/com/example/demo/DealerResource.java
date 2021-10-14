@@ -17,7 +17,7 @@ public class DealerResource {
 	@RequestMapping("/call")
 	public String call() {
 		
-		return restTemplate.getForObject("http://localhost:8081/getall", String.class).toString();
+		return restTemplate.getForObject("http://farmer-app/getall", String.class).toString();
 				
 //		return "hi iam hard coded";
 	}
