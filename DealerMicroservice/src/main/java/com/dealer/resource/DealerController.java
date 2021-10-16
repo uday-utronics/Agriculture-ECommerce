@@ -1,5 +1,6 @@
 package com.dealer.resource;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.dealer.model.CropModel;
 import com.dealer.model.Dealer;
 
 @RestController
@@ -61,7 +63,7 @@ public class DealerController {
 	
 	
 	
-	// additional functionality to be added as required
+	// --------------------------------farmer rest api calls---------------------------
 	
 	@RequestMapping("/call")
 	public String call() {
@@ -80,6 +82,28 @@ public class DealerController {
 	public String getFarmerById(@PathVariable String id) {
 		return restTemplate.getForObject("http://FARMER-APP//findfarmer/"+id, String.class).toString();
 	}
+	
+	
+	///---------------------------------------crop calls---------------------------------
+	
+	@RequestMapping("/getAllCrops")
+	public List<CropModel> getAllCrops(){
+		
+		
+				
+		return Arrays.asList(restTemplate.getForObject("http://CropMicroservice/crop/getall",CropModel[].class));
+		
+	}
+	
+	@RequestMapping("/getAllCrops/{farmerId}")
+	public List<CropModel> getAllCropsByFarmerId(@PathVariable String farmerId){
+		
+		
+				
+		return Arrays.asList(restTemplate.getForObject("http://CropMicroservice/crop/getall/"+farmerId,CropModel[].class));
+		
+	}
+	
 	
 	
 	
