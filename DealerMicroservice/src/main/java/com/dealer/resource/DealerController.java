@@ -66,13 +66,20 @@ public class DealerController {
 	@RequestMapping("/call")
 	public String call() {
 		
-		return restTemplate.getForObject("http://farmer-app/getall", String.class).toString();
+		return restTemplate.getForObject("http://FARMER-APP/getall", String.class).toString();
 				
 //		return "hi iam hard coded";
 	}
 	
+	@RequestMapping("/farmer/{farmerUsername}")
+	public String getFarmer(@PathVariable String farmerUsername) {
+		return restTemplate.getForObject("http://FARMER-APP/get/"+farmerUsername, String.class).toString();
+	}
 	
-	
+	@RequestMapping("/farmerid/{id}")
+	public String getFarmerById(@PathVariable String id) {
+		return restTemplate.getForObject("http://FARMER-APP//findfarmer/"+id, String.class).toString();
+	}
 	
 	
 	
