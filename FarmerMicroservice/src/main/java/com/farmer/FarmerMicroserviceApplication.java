@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@EnableEurekaClient
-//@EnableDiscoveryClient
+//@EnableEurekaClient
+@EnableDiscoveryClient
 public class FarmerMicroserviceApplication {
 
 	@Bean

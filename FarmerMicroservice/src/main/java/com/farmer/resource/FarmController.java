@@ -1,5 +1,6 @@
 package com.farmer.resource;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,12 +16,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.farmer.model.CropModel;
 import com.farmer.model.FarmUser;
 import com.farmer.repository.FarmUserRepository;
 
 @RestController
 public class FarmController {
 
+	@Autowired
+	RestTemplate restTemplate;
+	
 	@Autowired
 	FarmUserService farmUserService;
 	
@@ -69,6 +74,28 @@ public class FarmController {
 		farmer.setId(id);
 		return farmUserService.update(farmer);
 	}
+	
+	//FArMER functionalities on his CROP
+		//------------------------------------------------------------------------
+		@RequestMapping("/getAllCrops/{farmerId}")
+		public List<CropModel> getAllCropsByFarmer(@PathVariable String farmerId) {
+			return Arrays.asList(restTemplate.getForObject("http://CropMicroservice/crop/getall/"+farmerId, CropModel[].class));
+
+		}
+		
+		
+		@PutMapping("/updateCrop/{cropId}")
+		public Boolean UpdateCrop(@PathVariable String cropId, @RequestBody CropModel Crop) {
+			restTemplate.put("http://CropMicroservice/crop/update/" + cropId, Crop);
+			return true;
+		}
+		
+		@RequestMapping("/deleteCrop/{cropId}")
+		public Boolean deleteCropById(@PathVariable String cropId) {
+			restTemplate.delete("http://CropMicroservice/crop/delete/" + cropId);
+			return true;
+
+		}
 	
 	//Functionality to be added
 //	@PutMapping("/update/username/{farmerUsername}")
