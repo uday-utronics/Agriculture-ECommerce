@@ -21,6 +21,7 @@ import com.farmer.model.FarmUser;
 import com.farmer.repository.FarmUserRepository;
 
 @RestController
+@RequestMapping("/api")
 public class FarmController {
 
 	@Autowired

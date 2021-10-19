@@ -18,6 +18,11 @@ public class CropModel {
 	private String cropType;
 	
 	
+	
+	public CropModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public CropModel(String farmerId, String cropId, String cropName, String cropLocation, double cropQty,
 			String cropType) {
 		super();
